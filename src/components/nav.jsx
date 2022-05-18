@@ -3,7 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { pageActions } from "../store/page-slice";
 
 const renderAvatar = (isLoggedIn) => {
-  console.log(isLoggedIn);
   if (!isLoggedIn) {
     return (
       <div className="mx-5">
@@ -48,7 +47,6 @@ const Nav = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const active = useSelector((state) => state.page.currentPage);
   const dispatch = useDispatch();
-  console.log(active);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark nav">
       <div className="container-fluid">

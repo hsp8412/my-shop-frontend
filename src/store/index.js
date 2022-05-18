@@ -1,9 +1,9 @@
-import {combineReducers, configureStore} from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import authSlice from "./auth-slice";
 import pageSlice from "./page-slice";
 import productsSlice from "./products-slice";
-import storage from 'redux-persist/lib/storage'
-import {persistReducer} from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { persistReducer } from "redux-persist";
 
 const reducers = combineReducers({
   products: productsSlice.reducer,
@@ -12,16 +12,14 @@ const reducers = combineReducers({
 });
 
 const persistConfig = {
-  key: 'root',
-  version: 1,
+  key: "root",
   storage,
-}
+};
 
-
-const persistedReducer = persistReducer(persistConfig, reducers)
+const persistedReducer = persistReducer(persistConfig, reducers);
 
 const store = configureStore({
-  reducer: persistedReducer
+  reducer: persistedReducer,
 });
 
 export default store;
