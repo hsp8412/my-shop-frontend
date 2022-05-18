@@ -1,5 +1,5 @@
 .nav {
-  background-color: #074582;
+  background-color: #074582 !important;
 }
 
 .nav-brand {
@@ -11,7 +11,14 @@
 
 .nav-item-text {
   font-family: "Roboto", sans-serif;
-  font-weight: 700;
+  font-weight: normal;
+  font-size: 20px;
+  color: white !important;
+}
+
+.active-item {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
   font-size: 20px;
   color: white !important;
 }
@@ -36,4 +43,12 @@
   background-color: white;
   color: black;
   border: 2px solid white;
+}
+
+.greeting {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  color: white;
+  display: inline;
 }
