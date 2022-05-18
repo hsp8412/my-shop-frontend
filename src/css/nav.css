@@ -24,8 +24,9 @@
 }
 
 .search-button {
-  font-family: "Poppins", sans-serif;
-  background-color: #1e90ff;
+  font-family: "Roboto", sans-serif;
+  font-weight: normal;
+  background-color: #074582;
   border: 2px solid white;
   color: white;
   padding: 5px 14px;
