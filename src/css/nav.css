@@ -51,5 +51,8 @@
   font-weight: 700;
   font-size: 20px;
   color: white;
-  display: inline;
+}
+
+.right-components{
+  list-style-type:none;;
 }

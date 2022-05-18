@@ -29,8 +29,8 @@ const renderAvatar = (isLoggedIn) => {
     );
   }
   return (
-    <div className="mx-5">
-      <p className="greeting mx-2">Hi, user!</p>
+    <div className="d-flex flex-row">
+      <p className="greeting me-3 my-auto">Hi, user!</p>
       <button
         className="search-button"
         type="submit"
@@ -64,7 +64,7 @@ const Nav = () => {
           aria-expanded="false"
           aria-label="Toggle navigation"
         >
-          <span className="navbar-toggler-icon toggle-icon"></span>
+          <span className="navbar-toggler-icon toggle-icon" />
         </button>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
@@ -110,18 +110,22 @@ const Nav = () => {
               </a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
-            <input
-              className="form-control me-2"
-              type="search"
-              placeholder="Search"
-              aria-label="Search"
-            />
-            <button className="search-button" type="submit">
-              Search
-            </button>
-          </form>
-          {renderAvatar(isLoggedIn)}
+          <ul className="right-components d-flex d-inline navbar-nav">
+            <li className="nav-item me-5">
+              <form className="d-flex" role="search">
+                <input
+                  className="form-control me-2"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <button className="search-button" type="submit">
+                  Search
+                </button>
+              </form>
+            </li>
+            <li className="nav-item">{renderAvatar(isLoggedIn)}</li>
+          </ul>
         </div>
       </div>
     </nav>
