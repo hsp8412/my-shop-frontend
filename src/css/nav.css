@@ -37,7 +37,7 @@
   margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
-  border-radius: 19px;
+  border-radius: 19px!important;
 }
 
 .search-button:hover {

@@ -5,9 +5,9 @@ import { pageActions } from "../store/page-slice";
 const renderAvatar = (isLoggedIn) => {
   if (!isLoggedIn) {
     return (
-      <div className="mx-5">
+      <div className="">
         <button
-          className="search-button mx-2"
+          className="search-button me-2 btn-sm"
           type="submit"
           onClick={() => {
             window.location = "/login";
@@ -16,7 +16,7 @@ const renderAvatar = (isLoggedIn) => {
           Login
         </button>
         <button
-          className="search-button"
+          className="search-button btn-sm"
           type="submit"
           onClick={() => {
             window.location = "/register";
@@ -31,7 +31,7 @@ const renderAvatar = (isLoggedIn) => {
     <div className="d-flex flex-row">
       <p className="greeting me-3 my-auto">Hi, user!</p>
       <button
-        className="search-button"
+        className="search-button btn-sm"
         type="submit"
         onClick={() => {
           window.location.reload();
@@ -47,6 +47,7 @@ const Nav = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const active = useSelector((state) => state.page.currentPage);
   const dispatch = useDispatch();
+  console.log(isLoggedIn);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark nav">
       <div className="container-fluid">
@@ -117,7 +118,7 @@ const Nav = () => {
                   placeholder="Search"
                   aria-label="Search"
                 />
-                <button className="search-button" type="submit">
+                <button className="search-button btn-sm" type="submit">
                   Search
                 </button>
               </form>

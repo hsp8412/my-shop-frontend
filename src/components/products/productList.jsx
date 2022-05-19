@@ -6,9 +6,9 @@ const ProductList = ({ display }) => {
   return (
     <Container>
       {display.map((row, index) => (
-        <Row key={index}>
+        <Row key={index} className="mt-4 mb-4">
           {row.map((product) => (
-            <Col className="" md="4">
+            <Col className="d-flex justify-content-center" md="4" xs="12">
               <ProductCard product={product} />
             </Col>
           ))}
