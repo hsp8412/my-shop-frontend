@@ -7,7 +7,7 @@ const pageSlice = createSlice({
   },
   reducers: {
     changePage(state, action) {
-      state.currentPage = action.payload.page;
+      state.currentPage = action.payload;
     },
   },
 });

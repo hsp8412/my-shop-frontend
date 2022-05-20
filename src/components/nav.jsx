@@ -47,7 +47,6 @@ const Nav = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const active = useSelector((state) => state.page.currentPage);
   const dispatch = useDispatch();
-  console.log(isLoggedIn);
   return (
     <nav className="navbar navbar-expand-lg navbar-dark nav">
       <div className="container-fluid">
@@ -74,9 +73,7 @@ const Nav = () => {
                 }`}
                 aria-current="page"
                 href="/"
-                onClick={() =>
-                  dispatch(pageActions.changePage({ page: "Products" }))
-                }
+                onClick={() => dispatch(pageActions.changePage("Products"))}
               >
                 Products
               </a>
@@ -87,9 +84,7 @@ const Nav = () => {
                   active === "Cart" ? "active-item" : ""
                 }`}
                 href="/cart"
-                onClick={() =>
-                  dispatch(pageActions.changePage({ page: "Cart" }))
-                }
+                onClick={() => dispatch(pageActions.changePage("Cart"))}
               >
                 Shopping Cart
               </a>
@@ -101,9 +96,7 @@ const Nav = () => {
                   active === "Orders" ? "active-item" : ""
                 }`}
                 href="/"
-                onClick={() =>
-                  dispatch(pageActions.changePage({ page: "Orders" }))
-                }
+                onClick={() => dispatch(pageActions.changePage("Orders"))}
               >
                 Orders
               </a>

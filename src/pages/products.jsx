@@ -9,9 +9,7 @@ const Products = () => {
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.itemList);
   const productsPerRow = useSelector((state) => state.products.itemsPerRow);
-  console.log(productsPerRow);
   const display = _.chunk(products, productsPerRow);
-  console.log(display);
 
   useEffect(() => {
     dispatch(fetchProducts());

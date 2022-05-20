@@ -5,6 +5,7 @@ const productsSlice = createSlice({
   initialState: {
     itemList: [],
     itemsPerRow: 3,
+    productToDisplay: null,
   },
   reducers: {
     setProducts(state, action) {
@@ -12,6 +13,9 @@ const productsSlice = createSlice({
     },
     setItemsPerRow(state, action) {
       state.itemsPerRow = action.payload;
+    },
+    setProductToDisplay(state, action) {
+      state.productToDisplay = action.payload;
     },
   },
 });

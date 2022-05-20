@@ -4,20 +4,33 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.bundle.min"
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import { Provider } from "react-redux";
 import store from "./store/index";
-import {PersistGate} from "redux-persist/integration/react";
-import {persistStore} from "redux-persist";
+import { PersistGate } from "redux-persist/integration/react";
+import { persistStore } from "redux-persist";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 
 let persistor = persistStore(store);
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-            <App/>
-        </PersistGate>
+      <PersistGate loading={null} persistor={persistor}>
+        <App />
+        <ToastContainer
+          position="bottom-right"
+          autoClose={2000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+      </PersistGate>
     </Provider>
   </React.StrictMode>
 );
