@@ -46,7 +46,16 @@ const renderAvatar = (isLoggedIn) => {
 const Nav = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const active = useSelector((state) => state.page.currentPage);
+  const searchContents = useSelector((state) => state.page.searchContents);
   const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(searchContents);
+    dispatch(pageActions.changePage(""));
+    window.location = `/search/${searchContents}`;
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-dark nav">
       <div className="container-fluid">
@@ -110,8 +119,17 @@ const Nav = () => {
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={(e) =>
+                    dispatch(
+                      pageActions.setSearchContents(e.currentTarget.value)
+                    )
+                  }
                 />
-                <button className="search-button btn-sm" type="submit">
+                <button
+                  className="search-button btn-sm"
+                  type="submit"
+                  onClick={(e) => handleSubmit(e)}
+                >
                   Search
                 </button>
               </form>

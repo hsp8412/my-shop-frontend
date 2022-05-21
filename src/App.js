@@ -5,6 +5,7 @@ import ProductDetail from "./pages/productDetail";
 import Cart from "./pages/cart";
 import { ToastContainer } from "react-toastify";
 import Orders from "./pages/orders";
+import SearchResult from "./pages/searchResult";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/product/:id" element={<ProductDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
+          <Route path="/search/:key" element={<SearchResult />} />
         </Routes>
       </BrowserRouter>
     </div>
