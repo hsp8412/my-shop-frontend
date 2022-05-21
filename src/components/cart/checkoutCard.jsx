@@ -1,6 +1,9 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../../store/cart-slice";
 
 const CheckoutCard = ({ items }) => {
+  const dispatch = useDispatch();
   const calculateTotal = () => {
     let total = 0;
     items.forEach((item) => {
@@ -18,7 +21,11 @@ const CheckoutCard = ({ items }) => {
           </button>
         </a>
         <a href="#" className="card-link">
-          <button type="button" className="btn btn-danger">
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={() => dispatch(cartActions.removeAll())}
+          >
             Remove all
           </button>
         </a>
