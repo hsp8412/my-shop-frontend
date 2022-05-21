@@ -8,6 +8,7 @@ const orders = [
       { productId: 4, quantity: 1 },
     ],
     timeCreated: new Date(2022, 4, 24, 10, 33, 30, 0),
+    isConfirmed: true,
     isFulfilled: true,
   },
   {
@@ -18,6 +19,7 @@ const orders = [
       { productId: 5, quantity: 3 },
     ],
     timeCreated: new Date(2022, 4, 25, 15, 20, 0, 0),
+    isConfirmed: true,
     isFulfilled: false,
   },
   {
@@ -25,14 +27,15 @@ const orders = [
     userId: 2,
     products: [{ productId: 4, quantity: 1 }],
     timeCreated: new Date(2022, 4, 26, 10, 33, 30, 0),
-    isFulfilled: true,
+    isConfirmed: false,
+    isFulfilled: false,
   },
 ];
 
 export function getOrdersByUserId(id) {
-  return orders.filter((order) => (order.userId = id));
+  return orders.filter((order) => order.userId === id);
 }
 
 export function getOrderById(id) {
-  return orders.filter((order) => (order.id = id));
+  return orders.filter((order) => order.id === id);
 }

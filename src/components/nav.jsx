@@ -95,7 +95,7 @@ const Nav = () => {
                 className={`nav-link nav-item-text ${
                   active === "Orders" ? "active-item" : ""
                 }`}
-                href="/"
+                href="/orders"
                 onClick={() => dispatch(pageActions.changePage("Orders"))}
               >
                 Orders
