@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { cartActions } from "../../store/cart-slice";
+import { toast } from "react-toastify";
 
 const CheckoutCard = ({ items }) => {
   const dispatch = useDispatch();
@@ -24,7 +25,10 @@ const CheckoutCard = ({ items }) => {
           <button
             type="button"
             className="btn btn-danger"
-            onClick={() => dispatch(cartActions.removeAll())}
+            onClick={() => {
+              dispatch(cartActions.removeAll());
+              toast.success("All items in the cart have been removed.");
+            }}
           >
             Remove all
           </button>
