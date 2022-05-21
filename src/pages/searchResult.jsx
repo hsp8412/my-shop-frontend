@@ -52,7 +52,7 @@ const SearchResult = () => {
   return (
     <div>
       <div className="container mt-3">
-        <h3>Search result for "{keys}":</h3>
+        <h3>Search results for "{keys}":</h3>
       </div>
       {renderResult()}
     </div>
