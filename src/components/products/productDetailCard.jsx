@@ -27,18 +27,29 @@ const ProductDetailCard = ({ product }) => {
               <h5 className="card-title">{product.name}</h5>
               <h5 className="card-text">${product.price}</h5>
               <p className="card-text">{product.description}</p>
-              <button
-                type="button"
-                className="btn btn-primary"
-                onClick={() => {
-                  dispatch(addToCart(cartItems, product));
-                  toast.success(
-                    "Item has been added to your cart successfully."
-                  );
-                }}
-              >
-                Add To Cart
-              </button>
+              <div>
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  onClick={() => {
+                    dispatch(addToCart(cartItems, product));
+                    toast.success(
+                      "Item has been added to your cart successfully."
+                    );
+                  }}
+                >
+                  Add to cart
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-primary mx-3"
+                  onClick={() => {
+                    window.location = "/";
+                  }}
+                >
+                  Go back
+                </button>
+              </div>
             </div>
           </div>
         </div>

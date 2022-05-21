@@ -10,7 +10,7 @@ const CheckoutCard = ({ items }) => {
     items.forEach((item) => {
       total += item.price * item.quantity;
     });
-    return total;
+    return (Math.round(total * 100) / 100).toFixed(2);
   };
   return (
     <div className="card mt-4">

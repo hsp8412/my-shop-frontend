@@ -35,11 +35,26 @@ const SearchResult = () => {
   });
 
   display = _.chunk(display, productsPerRow);
-  console.log(display);
+
+  const renderResult = () => {
+    console.log(display);
+    if (display.length === 0) {
+      console.log("hi");
+      return (
+        <div className="d-flex justify-content-center mt-4">
+          <h3>Sorry, no result found. </h3>
+        </div>
+      );
+    }
+    return <ProductList display={display} />;
+  };
 
   return (
     <div>
-      <ProductList display={display} />
+      <div className="container mt-3">
+        <h3>Search result for "{keys}":</h3>
+      </div>
+      {renderResult()}
     </div>
   );
 };
