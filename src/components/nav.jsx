@@ -48,6 +48,7 @@ const Nav = () => {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const active = useSelector((state) => state.page.currentPage);
   const searchContents = useSelector((state) => state.page.searchContents);
+  const itemsInCart = useSelector((state) => state.cart.itemList);
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
@@ -58,6 +59,20 @@ const Nav = () => {
     } else {
       toast.error("Please enter the search text.");
     }
+  };
+
+  const renderItemsCount = () => {
+    if (itemsInCart.length === 0) {
+      return;
+    }
+    let total = 0;
+    itemsInCart.forEach((item) => (total += item.quantity));
+    return (
+      <span className="items-count-circle">
+        {"  "}
+        <span className="items-count">{total}</span>
+      </span>
+    );
   };
 
   return (
@@ -91,7 +106,7 @@ const Nav = () => {
                 Products
               </a>
             </li>
-            <li className="nav-item">
+            <li className="nav-item ">
               <a
                 className={`nav-link nav-item-text ${
                   active === "Cart" ? "active-item" : ""
@@ -100,6 +115,7 @@ const Nav = () => {
                 onClick={() => dispatch(pageActions.changePage("Cart"))}
               >
                 Shopping Cart
+                {renderItemsCount()}
               </a>
             </li>
 

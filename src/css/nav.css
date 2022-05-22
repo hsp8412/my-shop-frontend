@@ -56,3 +56,20 @@
 .right-components{
   list-style-type:none;;
 }
+
+.items-count-circle{
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  background-color: red;
+  border-radius: 50%;
+  vertical-align: top;
+}
+
+.items-count{
+  display: block;
+  color: #FFFFFF;
+  height:20px;
+  line-height: 20px;
+  text-align: center;
+}
