@@ -17,7 +17,6 @@ const SearchResult = () => {
 
   let display = [];
   const keys = key.split(" ");
-  console.log(keys);
 
   products.forEach((product) => {
     let ifDisplay = false;
@@ -37,9 +36,7 @@ const SearchResult = () => {
   display = _.chunk(display, productsPerRow);
 
   const renderResult = () => {
-    console.log(display);
     if (display.length === 0) {
-      console.log("hi");
       return (
         <div className="d-flex justify-content-center mt-4">
           <h3>Sorry, no result found. </h3>

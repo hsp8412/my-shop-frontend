@@ -13,6 +13,9 @@ const pageSlice = createSlice({
     setSearchContents(state, action) {
       state.searchContents = action.payload;
     },
+    clearSearchContents(state) {
+      state.searchContents = "";
+    },
   },
 });
 

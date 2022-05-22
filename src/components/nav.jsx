@@ -1,6 +1,7 @@
 import "../css/nav.css";
 import { useSelector, useDispatch } from "react-redux";
 import { pageActions } from "../store/page-slice";
+import { toast } from "react-toastify";
 
 const renderAvatar = (isLoggedIn) => {
   if (!isLoggedIn) {
@@ -51,9 +52,12 @@ const Nav = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchContents);
-    dispatch(pageActions.changePage(""));
-    window.location = `/search/${searchContents}`;
+    if (searchContents !== "") {
+      dispatch(pageActions.clearSearchContents());
+      window.location = `/search/${searchContents}`;
+    } else {
+      toast.error("Please enter the search text.");
+    }
   };
 
   return (

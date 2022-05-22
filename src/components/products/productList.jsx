@@ -8,7 +8,12 @@ const ProductList = ({ display }) => {
       {display.map((row, index) => (
         <Row key={index} className="mt-4 mb-4">
           {row.map((product) => (
-            <Col className="d-flex justify-content-center" md="4" xs="12">
+            <Col
+              key={product.id}
+              className="d-flex justify-content-center"
+              md="4"
+              xs="12"
+            >
               <ProductCard product={product} />
             </Col>
           ))}
