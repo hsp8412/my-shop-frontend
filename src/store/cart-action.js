@@ -1,7 +1,6 @@
 import { cartActions } from "./cart-slice";
 
 export const addToCart = (cartItems, product) => {
-  console.log("hi");
   const item = cartItems.find((item) => item.id === product.id);
   console.log(item);
   if (!item) {
