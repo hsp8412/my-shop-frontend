@@ -2,8 +2,10 @@ import "../css/nav.css";
 import { useSelector, useDispatch } from "react-redux";
 import { pageActions } from "../store/page-slice";
 import { toast } from "react-toastify";
+import { logout } from "../service/authService";
+import { authActions } from "../store/auth-slice";
 
-const renderAvatar = (isLoggedIn) => {
+const renderAvatar = (isLoggedIn, dispatch) => {
   if (!isLoggedIn) {
     return (
       <div className="">
@@ -35,6 +37,8 @@ const renderAvatar = (isLoggedIn) => {
         className="search-button btn-sm"
         type="submit"
         onClick={() => {
+          logout();
+          dispatch(authActions.logout());
           window.location.reload();
         }}
       >
@@ -154,7 +158,7 @@ const Nav = () => {
                 </button>
               </form>
             </li>
-            <li className="nav-item">{renderAvatar(isLoggedIn)}</li>
+            <li className="nav-item">{renderAvatar(isLoggedIn, dispatch)}</li>
           </ul>
         </div>
       </div>

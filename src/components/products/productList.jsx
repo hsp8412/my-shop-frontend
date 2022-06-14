@@ -9,7 +9,7 @@ const ProductList = ({ display }) => {
         <Row key={index} className="mt-4 mb-4">
           {row.map((product) => (
             <Col
-              key={product.id}
+              key={product.uuid}
               className="d-flex justify-content-center"
               md="4"
               xs="12"

@@ -2,15 +2,17 @@ import { getProductById, getProducts } from "../service/productsService";
 import { productsActions } from "./products-slice";
 
 export const fetchProducts = () => {
-  return (dispatch) => {
-    const fetchHandler = () => {
-      const data = getProducts();
+  return async (dispatch) => {
+    const fetchHandler = async () => {
+      const data = await getProducts();
       return data;
     };
     try {
-      const products = fetchHandler();
+      const products = await fetchHandler();
       dispatch(productsActions.setProducts(products));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 };
 

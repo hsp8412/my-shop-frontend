@@ -10,6 +10,8 @@ export const fetchOrders = () => {
     try {
       const orders = fetchHandler();
       dispatch(ordersActions.setOrders(orders));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err);
+    }
   };
 };

@@ -7,7 +7,10 @@ const ProductCard = ({ product }) => {
   const cartItems = useSelector((state) => state.cart.itemList);
   const dispatch = useDispatch();
   return (
-    <div className="card d-flex" style={{ width: "18rem", height: "28rem" }}>
+    <div
+      className="card d-flex flex-column"
+      style={{ width: "18rem", height: "24rem" }}
+    >
       <img src={product.imgUrl} className="card-img-top" alt="productImage" />
       <div className="card-body">
         <a href={`/product/${product.id}`}>

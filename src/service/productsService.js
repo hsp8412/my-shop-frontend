@@ -1,3 +1,7 @@
+import http from "./httpService";
+const apiUrl = process.env.REACT_APP_URL_BASE;
+const productApiEndpoint = apiUrl + "/product";
+
 const products = [
   {
     id: 1,
@@ -46,8 +50,11 @@ const products = [
   },
 ];
 
-export function getProducts() {
-  return products;
+export async function getProducts() {
+  // return products;
+  const res = await http.get(productApiEndpoint);
+  console.log(res.data);
+  return res.data;
 }
 
 export function getProductById(id) {

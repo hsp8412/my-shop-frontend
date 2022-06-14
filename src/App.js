@@ -6,6 +6,7 @@ import Cart from "./pages/cart";
 import { ToastContainer } from "react-toastify";
 import Orders from "./pages/orders";
 import SearchResult from "./pages/searchResult";
+import Login from "./pages/login";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/search/:key" element={<SearchResult />} />
+          <Route path="/login" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </div>
