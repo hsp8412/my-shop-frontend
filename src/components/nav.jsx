@@ -37,8 +37,7 @@ const renderAvatar = (isLoggedIn, dispatch) => {
         className="search-button btn-sm"
         type="submit"
         onClick={() => {
-          logout();
-          dispatch(authActions.logout());
+          logout(dispatch);
           window.location.reload();
         }}
       >

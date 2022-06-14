@@ -57,7 +57,7 @@ export async function getProducts() {
   return res.data;
 }
 
-export function getProductById(id) {
-  const data = products.find((product) => product.id == id);
-  return data;
+export async function getProductById(id) {
+  const res = await http.get(productApiEndpoint + "/" + id);
+  return res.data;
 }

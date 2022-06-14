@@ -16,9 +16,7 @@ const LoginForm = () => {
     },
     onSubmit: async ({ email, password }, { resetForm }) => {
       try {
-        await login(email, password);
-        const userInfo = await getUserInfo();
-        dispatch(authActions.login(userInfo));
+        await login(email, password, dispatch);
         resetForm();
         window.location = "/";
       } catch (ex) {

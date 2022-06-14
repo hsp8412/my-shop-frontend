@@ -11,15 +11,18 @@ const EmptyCart = () => {
         style={{ height: "15rem" }}
       >
         <h1 className="align-self-center mb-4">Your shopping cart is empty.</h1>
-        <a href="/" className="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <button
             type="button"
             className="btn btn-primary"
-            onClick={() => dispatch(pageActions.changePage("Products"))}
+            onClick={() => {
+              window.location = "/";
+              dispatch(pageActions.changePage("Products"));
+            }}
           >
             Go shopping
           </button>
-        </a>
+        </div>
       </div>
     </div>
   );
