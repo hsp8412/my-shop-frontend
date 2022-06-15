@@ -5,7 +5,6 @@ import { Button, Card, Container, Form } from "react-bootstrap";
 import { login } from "../../service/authService";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth-slice";
-import { getUserInfo } from "../../service/userService";
 
 const LoginForm = () => {
   const dispatch = useDispatch();

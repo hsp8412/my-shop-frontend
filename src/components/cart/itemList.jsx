@@ -1,5 +1,4 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import ItemCard from "./itemCard";
 import CheckoutCard from "./checkoutCard";
 
