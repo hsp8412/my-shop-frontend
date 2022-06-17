@@ -18,14 +18,16 @@ export const fetchProducts = () => {
 
 export const fetchProduct = (id) => {
   console.log(id);
-  return (dispatch) => {
-    const fetchHandler = () => {
-      const data = getProductById(id);
-      return data;
+  return async (dispatch) => {
+    const fetchHandler = async () => {
+      const res = await getProductById(id);
+      return res;
     };
     try {
-      const product = fetchHandler();
+      const product = await fetchHandler();
       dispatch(productsActions.setProductToDisplay(product));
-    } catch (err) {}
+    } catch (err) {
+      console.log(err)
+    }
   };
 };

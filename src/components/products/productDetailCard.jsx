@@ -4,9 +4,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cart-action";
 import { toast } from "react-toastify";
 
-const ProductDetailCard = ({ product }) => {
+const ProductDetailCard = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.itemList);
+  const product = useSelector((state) => state.products.productToDisplay);
   if (product === null) {
     return <div />;
   }

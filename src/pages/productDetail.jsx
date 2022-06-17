@@ -5,17 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProduct } from "../store/products-actions";
 
 const ProductDetail = () => {
-  let { id } = useParams();
-  const product = useSelector((state) => state.products.productToDisplay);
+  let { uuid } = useParams();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(fetchProduct(id));
+    dispatch(fetchProduct(uuid));
   }, [dispatch]);
 
   return (
     <div>
-      <ProductDetailCard product={product} />
+      <ProductDetailCard/>
     </div>
   );
 };

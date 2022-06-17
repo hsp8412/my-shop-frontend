@@ -16,7 +16,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Products />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+          <Route path="/product/:uuid" element={<ProductDetail />} />
             <Route path="/user" element={<ProtectedRoute />}>
                 <Route path="/user" element={<Navigate to="/login" />} />
                 <Route path="/user/cart" element={<Cart />} />

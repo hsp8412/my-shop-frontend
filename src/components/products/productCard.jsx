@@ -13,7 +13,7 @@ const ProductCard = ({ product }) => {
     >
       <img src={product.imgUrl} className="card-img-top" alt="productImage" />
       <div className="card-body">
-        <a href={`/product/${product.id}`}>
+        <a href={`/product/${product.uuid}`}>
           <h5 className="card-title">{product.name}</h5>
         </a>
         <h5 className="card-title">${product.price}</h5>
