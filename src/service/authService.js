@@ -5,6 +5,7 @@ import { authActions } from "../store/auth-slice";
 import { getCart } from "./cartService";
 import { getProductById } from "./productsService";
 import { cartActions } from "../store/cart-slice";
+import _ from "lodash";
 const accessTokenKey = "token";
 
 const apiUrl = process.env.REACT_APP_URL_BASE;
@@ -41,10 +42,16 @@ export function getAccessJwt() {
   return localStorage.getItem(accessTokenKey);
 }
 
-export function logout(dispatch) {
-  localStorage.removeItem(accessTokenKey);
+export async function logout(dispatch, itemsInCart) {
+  let items = []
+  for (let item of itemsInCart) {
+    item = _.pick(item, ['uuid', 'quantity']);
+    items.push(item);
+  }
+  await http.post(cartApiEndpoint, {items});
   dispatch(authActions.logout());
   dispatch(cartActions.removeAll());
+  localStorage.removeItem(accessTokenKey);
 }
 
 export function getCurrentUser() {

@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { logout } from "../service/authService";
 import { authActions } from "../store/auth-slice";
 
-const renderAvatar = (isLoggedIn, dispatch) => {
+const renderAvatar = (isLoggedIn, dispatch,itemsInCart) => {
   if (!isLoggedIn) {
     return (
       <div className="">
@@ -36,8 +36,8 @@ const renderAvatar = (isLoggedIn, dispatch) => {
       <button
         className="search-button btn-sm"
         type="submit"
-        onClick={() => {
-          logout(dispatch);
+        onClick={async () => {
+          await logout(dispatch, itemsInCart);
           window.location.reload();
         }}
       >
@@ -157,7 +157,7 @@ const Nav = () => {
                 </button>
               </form>
             </li>
-            <li className="nav-item">{renderAvatar(isLoggedIn, dispatch)}</li>
+            <li className="nav-item">{renderAvatar(isLoggedIn, dispatch,itemsInCart)}</li>
           </ul>
         </div>
       </div>
