@@ -114,7 +114,7 @@ const Nav = () => {
                 className={`nav-link nav-item-text ${
                   active === "Cart" ? "active-item" : ""
                 }`}
-                href="/cart"
+                href="/user/cart"
                 onClick={() => dispatch(pageActions.changePage("Cart"))}
               >
                 Shopping Cart
@@ -127,7 +127,7 @@ const Nav = () => {
                 className={`nav-link nav-item-text ${
                   active === "Orders" ? "active-item" : ""
                 }`}
-                href="/orders"
+                href="/user/orders"
                 onClick={() => dispatch(pageActions.changePage("Orders"))}
               >
                 Orders
