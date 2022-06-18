@@ -9,7 +9,7 @@ const ItemList = ({ items }) => {
         <div className="row">
           <div className="col-md-8 d-flex flex-column justify-content-center">
             {items.map((item) => (
-              <ItemCard item={item} items={items} />
+              <ItemCard key={item.uuid} item={item} items={items} />
             ))}
           </div>
           <div className="col-md-4">

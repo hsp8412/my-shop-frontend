@@ -6,7 +6,7 @@ const OrderList = ({ orders }) => {
   return (
     <div className="container d-flex flex-column mt-3">
       {orders.map((order) => (
-        <OrderCard order={order} />
+        <OrderCard key={order.uuid} order={order} />
       ))}
     </div>
   );

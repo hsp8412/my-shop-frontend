@@ -1,14 +1,14 @@
-import { getOrdersByUserId } from "../service/orderService";
+import { getUserOrder } from "../service/orderService";
 import { ordersActions } from "./orders-slice";
 
 export const fetchOrders = () => {
-  return (dispatch) => {
-    const fetchHandler = () => {
-      const data = getOrdersByUserId(1);
+  return async (dispatch) => {
+    const fetchHandler = async () => {
+      const data = await getUserOrder();
       return data;
     };
     try {
-      const orders = fetchHandler();
+      const orders = await fetchHandler();
       dispatch(ordersActions.setOrders(orders));
     } catch (err) {
       console.log(err);
