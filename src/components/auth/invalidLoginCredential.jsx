@@ -18,7 +18,7 @@ const InvalidLoginCredential = ({ show }) => {
         <Modal.Footer>
           <Button
             variant="secondary"
-            onClick={dispatch(authActions.setShowInvalid(false))}
+            onClick={()=>dispatch(authActions.setShowInvalid(false))}
           >
             Close
           </Button>

@@ -14,6 +14,7 @@ const authSlice = createSlice({
     },
     logout(state) {
       state.isLoggedIn = false;
+      state.userInfo = {}
     },
     setShowInvalid(state, action) {
       state.showInvalid = action.payload;
