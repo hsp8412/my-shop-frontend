@@ -22,6 +22,7 @@ const CheckoutCard = ({ items }) => {
     }
     await submitOrder(orderItems);
     dispatch(cartActions.removeAll());
+    toast.success("Your order has been submitted successfully.");
   }
 
   return (

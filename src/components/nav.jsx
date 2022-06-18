@@ -4,8 +4,9 @@ import { pageActions } from "../store/page-slice";
 import { toast } from "react-toastify";
 import { logout } from "../service/authService";
 import { authActions } from "../store/auth-slice";
+import {getUserInfo, getUserName} from "../service/userService";
 
-const renderAvatar = (isLoggedIn, dispatch,itemsInCart) => {
+const renderAvatar = (isLoggedIn, dispatch,itemsInCart,userInfo) => {
   if (!isLoggedIn) {
     return (
       <div className="">
@@ -32,7 +33,7 @@ const renderAvatar = (isLoggedIn, dispatch,itemsInCart) => {
   }
   return (
     <div className="d-flex flex-row">
-      <p className="greeting me-3 my-auto">Hi, user!</p>
+      <p className="greeting me-3 my-auto">Hi, {userInfo.firstName}!</p>
       <button
         className="search-button btn-sm"
         type="submit"
@@ -52,7 +53,10 @@ const Nav = () => {
   const active = useSelector((state) => state.page.currentPage);
   const searchContents = useSelector((state) => state.page.searchContents);
   const itemsInCart = useSelector((state) => state.cart.itemList);
+  const userInfo = useSelector((state) => state.auth.userInfo);
   const dispatch = useDispatch();
+
+  console.log(userInfo.firstName)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -157,7 +161,7 @@ const Nav = () => {
                 </button>
               </form>
             </li>
-            <li className="nav-item">{renderAvatar(isLoggedIn, dispatch,itemsInCart)}</li>
+            <li className="nav-item">{renderAvatar(isLoggedIn, dispatch,itemsInCart,userInfo)}</li>
           </ul>
         </div>
       </div>

@@ -12,15 +12,6 @@ const OrderCard = ({ order }) => {
     return (Math.round(total * 100) / 100).toFixed(2);
   };
 
-  // const renderStatus = () => {
-  //   if (!order.isFulfilled) {
-  //     if (order.isConfirmed)
-  //       return <p className="order-text">Status: Confirmed</p>;
-  //     return <p className="order-text">Status: Submitted</p>;
-  //   }
-  //   return <p className="order-text">Status: Shipped</p>;
-  // };
-
   const renderDate = () => {
     return (
       <p className="text-muted">
