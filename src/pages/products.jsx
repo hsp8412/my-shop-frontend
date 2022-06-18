@@ -4,6 +4,7 @@ import { fetchProducts } from "../store/products-actions";
 import ProductList from "../components/products/productList";
 import _ from "lodash";
 import { productsActions } from "../store/products-slice";
+import LoginPrompt from "../components/products/loginPrompt";
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Products = () => {
   return (
     <div>
       <ProductList display={display} />
+      <LoginPrompt/>
     </div>
   );
 };

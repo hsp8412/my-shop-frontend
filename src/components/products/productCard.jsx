@@ -2,9 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cart-action";
 import { toast } from "react-toastify";
+import {pageActions} from "../../store/page-slice";
 
 const ProductCard = ({ product }) => {
   const cartItems = useSelector((state) => state.cart.itemList);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const dispatch = useDispatch();
   return (
     <div
@@ -21,8 +23,12 @@ const ProductCard = ({ product }) => {
           type="button"
           className="btn btn-primary"
           onClick={() => {
-            dispatch(addToCart(cartItems, product));
-            toast.success("Item has been added to your cart successfully.");
+            if(isLoggedIn){
+              dispatch(addToCart(cartItems, product));
+              toast.success("Item has been added to your cart successfully.");
+            } else{
+              dispatch(pageActions.setShowLoginPrompt(true));
+            }
           }}
         >
           Add to cart

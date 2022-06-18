@@ -3,11 +3,13 @@ import { Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../../store/cart-action";
 import { toast } from "react-toastify";
+import {pageActions} from "../../store/page-slice";
 
 const ProductDetailCard = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.itemList);
   const product = useSelector((state) => state.products.productToDisplay);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   if (product === null) {
     return <div />;
   }
@@ -33,10 +35,15 @@ const ProductDetailCard = () => {
                   type="button"
                   className="btn btn-primary"
                   onClick={() => {
-                    dispatch(addToCart(cartItems, product));
-                    toast.success(
-                      "Item has been added to your cart successfully."
-                    );
+                    if(isLoggedIn){
+                      dispatch(addToCart(cartItems, product));
+                      toast.success(
+                          "Item has been added to your cart successfully."
+                      );
+                    }
+                    else{
+                      dispatch(pageActions.setShowLoginPrompt(true));
+                    }
                   }}
                 >
                   Add to cart

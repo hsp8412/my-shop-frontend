@@ -5,6 +5,7 @@ import { Button, Card, Container, Form } from "react-bootstrap";
 import { login } from "../../service/authService";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth-slice";
+import {pageActions} from "../../store/page-slice";
 
 const LoginForm = () => {
   const dispatch = useDispatch();
@@ -17,6 +18,7 @@ const LoginForm = () => {
       try {
         await login(email, password, dispatch);
         resetForm();
+        dispatch(pageActions.changePage("Products"));
         window.location = "/";
       } catch (ex) {
         if (ex.response && ex.response.status === 400) {

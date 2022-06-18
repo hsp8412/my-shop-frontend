@@ -5,6 +5,7 @@ const pageSlice = createSlice({
   initialState: {
     currentPage: "Products",
     searchContents: "",
+    showLoginPrompt: false,
   },
   reducers: {
     changePage(state, action) {
@@ -16,6 +17,9 @@ const pageSlice = createSlice({
     clearSearchContents(state) {
       state.searchContents = "";
     },
+    setShowLoginPrompt(state, action) {
+      state.showLoginPrompt = action.payload;
+    }
   },
 });
 
