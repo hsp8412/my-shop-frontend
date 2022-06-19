@@ -74,6 +74,12 @@ const Nav = () => {
     }
     let total = 0;
     itemsInCart.forEach((item) => (total += item.quantity));
+    if (total > 9) {
+      return (<span className="items-count-circle">
+        {"  "}
+        <span className="items-count">..</span>
+      </span>)
+    }
     return (
       <span className="items-count-circle">
         {"  "}
