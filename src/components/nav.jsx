@@ -4,9 +4,9 @@ import { pageActions } from "../store/page-slice";
 import { toast } from "react-toastify";
 import { logout } from "../service/authService";
 import { authActions } from "../store/auth-slice";
-import {getUserInfo, getUserName} from "../service/userService";
+import { getUserInfo, getUserName } from "../service/userService";
 
-const renderAvatar = (isLoggedIn, dispatch,itemsInCart,userInfo) => {
+const renderAvatar = (isLoggedIn, dispatch, itemsInCart, userInfo) => {
   if (!isLoggedIn) {
     return (
       <div className="">
@@ -23,6 +23,7 @@ const renderAvatar = (isLoggedIn, dispatch,itemsInCart,userInfo) => {
           className="search-button btn-sm"
           type="submit"
           onClick={() => {
+            dispatch(pageActions.changePage("Register"));
             window.location = "/register";
           }}
         >
@@ -56,7 +57,7 @@ const Nav = () => {
   const userInfo = useSelector((state) => state.auth.userInfo);
   const dispatch = useDispatch();
 
-  console.log(userInfo.firstName)
+  console.log(userInfo.firstName);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -75,10 +76,12 @@ const Nav = () => {
     let total = 0;
     itemsInCart.forEach((item) => (total += item.quantity));
     if (total > 9) {
-      return (<span className="items-count-circle">
-        {"  "}
-        <span className="items-count">..</span>
-      </span>)
+      return (
+        <span className="items-count-circle">
+          {"  "}
+          <span className="items-count">..</span>
+        </span>
+      );
     }
     return (
       <span className="items-count-circle">
@@ -167,7 +170,9 @@ const Nav = () => {
                 </button>
               </form>
             </li>
-            <li className="nav-item">{renderAvatar(isLoggedIn, dispatch,itemsInCart,userInfo)}</li>
+            <li className="nav-item">
+              {renderAvatar(isLoggedIn, dispatch, itemsInCart, userInfo)}
+            </li>
           </ul>
         </div>
       </div>
