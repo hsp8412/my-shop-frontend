@@ -4,6 +4,7 @@ import { fetchProducts } from "../store/products-actions";
 import { useParams } from "react-router-dom";
 import ProductList from "../components/products/productList";
 import _ from "lodash";
+import LoginPrompt from "../components/products/loginPrompt";
 
 const SearchResult = () => {
   const { key } = useParams();
@@ -52,6 +53,7 @@ const SearchResult = () => {
         <h3>Search results for "{keys}":</h3>
       </div>
       {renderResult()}
+      <LoginPrompt />
     </div>
   );
 };
