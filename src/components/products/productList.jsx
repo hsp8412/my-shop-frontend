@@ -4,13 +4,13 @@ import ProductCard from "./productCard";
 
 const ProductList = ({ display }) => {
   return (
-    <Container>
+    <Container className="mt-sm-3">
       {display.map((row, index) => (
-        <Row key={index} className="mt-4 mb-4">
+        <Row key={index} className="mt-md-4 mb-md-4">
           {row.map((product) => (
             <Col
               key={product.uuid}
-              className="d-flex justify-content-center"
+              className="d-flex justify-content-center mt-4"
               md="4"
               xs="12"
             >
