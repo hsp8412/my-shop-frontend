@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../service/authService";
+import {toast} from "react-toastify";
 
 const RegisterForm = () => {
   const provinceList = [
@@ -70,8 +71,10 @@ const RegisterForm = () => {
       try {
         console.log(user);
         await register(user);
+        toast.success("Your account has been created.");
       } catch (error) {
         console.log(error);
+        toast.error("Error occurs.");
       }
       navigate("/login");
     },
@@ -108,7 +111,7 @@ const RegisterForm = () => {
         .min(6, "Please enter a valid postal code")
         .max(6, "Please enter a valid postal code"),
     }),
-    validateOnChange: true,
+    validateOnChange: false,
   });
 
   return (

@@ -94,7 +94,7 @@ const Nav = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark nav">
       <div className="container-fluid">
-        <a className="navbar-brand nav-brand" href="#">
+        <a className="navbar-brand nav-brand" href="/" onClick={() => dispatch(pageActions.changePage("Index"))}>
           My shop
         </a>
         <button
@@ -116,7 +116,7 @@ const Nav = () => {
                   active === "Products" ? "active-item" : ""
                 }`}
                 aria-current="page"
-                href="/"
+                href="/products"
                 onClick={() => dispatch(pageActions.changePage("Products"))}
               >
                 Products
