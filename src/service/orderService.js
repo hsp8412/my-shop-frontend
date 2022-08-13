@@ -34,11 +34,20 @@
 
 import http from "./httpService";
 import {getProductById} from "./productsService";
+import {toast} from "react-toastify";
 const apiUrl = process.env.REACT_APP_URL_BASE;
 const orderApiEndpoint = apiUrl + "/order";
 
 export async function submitOrder(items) {
-  await http.post(orderApiEndpoint, {items});
+  let res = await http.post(orderApiEndpoint, {items});
+  console.log(res.data);
+  const orderId = res.data.uuid;
+  res = await http.post(`${orderApiEndpoint}/create-checkout-session`,{items, orderId});
+  if(res.status===200) {
+    window.location = res.data.url;
+  } else{
+    toast.error("Payment failed.")
+  }
 }
 
 export async function getUserOrder() {
