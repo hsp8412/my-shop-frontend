@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { logout } from "../service/authService";
 import { authActions } from "../store/auth-slice";
 import { getUserInfo, getUserName } from "../service/userService";
+import { useLocation } from "react-router-dom";
 
 const renderAvatar = (isLoggedIn, dispatch, itemsInCart, userInfo) => {
   if (!isLoggedIn) {
@@ -56,6 +57,7 @@ const Nav = () => {
   const itemsInCart = useSelector((state) => state.cart.itemList);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const dispatch = useDispatch();
+  const location = useLocation();
 
   console.log(userInfo.firstName);
 
@@ -63,7 +65,7 @@ const Nav = () => {
     e.preventDefault();
     if (searchContents !== "") {
       dispatch(pageActions.clearSearchContents());
-      window.location = `/search/${searchContents}`;
+      window.location = `/search?key=${searchContents}`;
     } else {
       toast.error("Please enter the search text.");
     }
@@ -94,7 +96,11 @@ const Nav = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark nav">
       <div className="container-fluid">
-        <a className="navbar-brand nav-brand" href="/" onClick={() => dispatch(pageActions.changePage("Index"))}>
+        <a
+          className="navbar-brand nav-brand"
+          href="/"
+          onClick={() => dispatch(pageActions.changePage("Index"))}
+        >
           My shop
         </a>
         <button
@@ -113,7 +119,7 @@ const Nav = () => {
             <li className="nav-item">
               <a
                 className={`nav-link nav-item-text ${
-                  active === "Products" ? "active-item" : ""
+                  location.pathname === "/products" ? "active-item" : ""
                 }`}
                 aria-current="page"
                 href="/products"
@@ -125,7 +131,7 @@ const Nav = () => {
             <li className="nav-item ">
               <a
                 className={`nav-link nav-item-text ${
-                  active === "Cart" ? "active-item" : ""
+                  location.pathname === "/user/cart" ? "active-item" : ""
                 }`}
                 href="/user/cart"
                 onClick={() => dispatch(pageActions.changePage("Cart"))}
@@ -138,7 +144,7 @@ const Nav = () => {
             <li className="nav-item">
               <a
                 className={`nav-link nav-item-text ${
-                  active === "Orders" ? "active-item" : ""
+                  location.pathname === "/user/orders" ? "active-item" : ""
                 }`}
                 href="/user/orders"
                 onClick={() => dispatch(pageActions.changePage("Orders"))}

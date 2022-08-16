@@ -16,7 +16,7 @@ const EmptyCart = () => {
             type="button"
             className="btn btn-primary"
             onClick={() => {
-              window.location = "/";
+              window.location = "/products";
               dispatch(pageActions.changePage("Products"));
             }}
           >

@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../store/products-actions";
-import { useParams } from "react-router-dom";
+import {useParams, useSearchParams} from "react-router-dom";
 import ProductList from "../components/products/productList";
 import _ from "lodash";
 import LoginPrompt from "../components/products/loginPrompt";
 
 const SearchResult = () => {
-  const { key } = useParams();
+  const [searchParam, setSearchParam] = useSearchParams();
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.itemList);
   const productsPerRow = useSelector((state) => state.products.itemsPerRow);
@@ -17,7 +17,10 @@ const SearchResult = () => {
   }, [dispatch]);
 
   let display = [];
+
+  const key = searchParam.get("key")
   const keys = key.split(" ");
+  console.log(keys)
 
   products.forEach((product) => {
     let ifDisplay = false;
@@ -50,7 +53,7 @@ const SearchResult = () => {
   return (
     <div>
       <div className="container mt-3">
-        <h3>Search results for "{keys}":</h3>
+        <h3>Search results for "{key}":</h3>
       </div>
       {renderResult()}
       <LoginPrompt />
