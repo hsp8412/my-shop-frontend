@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from "react-redux";
 import { pageActions } from "../store/page-slice";
 import { toast } from "react-toastify";
 import { logout } from "../service/authService";
-import { authActions } from "../store/auth-slice";
-import { getUserInfo, getUserName } from "../service/userService";
 import { useLocation } from "react-router-dom";
 
 const renderAvatar = (isLoggedIn, dispatch, itemsInCart, userInfo) => {
@@ -35,7 +33,13 @@ const renderAvatar = (isLoggedIn, dispatch, itemsInCart, userInfo) => {
   }
   return (
     <div className="d-flex flex-row">
-      <p className="greeting me-3 my-auto">Hi, {userInfo.firstName}!</p>
+      <div className="greeting me-3 my-auto">
+        Hi,{" "}
+        <a href="/user/profile" className="greeting">
+          {userInfo.firstName}
+        </a>
+        !
+      </div>
       <button
         className="search-button btn-sm"
         type="submit"

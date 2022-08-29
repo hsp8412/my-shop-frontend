@@ -11,6 +11,7 @@ import ProtectedRoute from "./components/protectedRoute";
 import Register from "./pages/register";
 import Index from "./pages";
 import Footer from "./components/footer";
+import Profile from "./pages/profile";
 
 function App() {
   return (
@@ -25,9 +26,8 @@ function App() {
             <Route path="/user" element={<Navigate to="/login" />} />
             <Route path="/user/cart" element={<Cart />} />
             <Route path="/user/orders" element={<Orders />} />
+            <Route path="/user/profile" element={<Profile />} />
           </Route>
-          {/*<Route path="/cart" element={<Cart />} />*/}
-          {/*<Route path="/orders" element={<Orders />} />*/}
           <Route path="/search" element={<SearchResult />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
