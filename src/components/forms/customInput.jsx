@@ -1,6 +1,5 @@
 import React from "react";
 import { Form } from "react-bootstrap";
-import * as yup from "yup";
 
 const CustomInput = ({
   handleChange,
@@ -21,6 +20,7 @@ const CustomInput = ({
           value={values[path]}
           onChange={handleChange}
           onBlur={handleBlur}
+          isInvalid={touched[path] && errors[path]}
         />
         {touched[path] && errors[path] ? (
           <Form.Text className="text-danger">{errors[path]}</Form.Text>
