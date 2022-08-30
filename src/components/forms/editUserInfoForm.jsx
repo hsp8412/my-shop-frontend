@@ -6,8 +6,12 @@ import { useEffect } from "react";
 import { getUserInfo, updateUserInfo } from "../../service/userService";
 import { Button, Form, Modal } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../store/auth-slice";
 
 const EditUserInfoForm = ({ handleClose, show }) => {
+  const dispatch = useDispatch();
+
   const schema = Yup.object({
     firstName: Yup.string()
       .min(1, "First name has to be between 1-50 characters")
@@ -42,6 +46,8 @@ const EditUserInfoForm = ({ handleClose, show }) => {
         await updateUserInfo({ ...values });
         console.log(values);
         handleClose();
+        const userInfo = await getUserInfo();
+        dispatch(authActions.resetUserInfo(userInfo));
         window.location.reload();
       } catch (e) {
         toast.error(e.message);

@@ -14,10 +14,13 @@ const authSlice = createSlice({
     },
     logout(state) {
       state.isLoggedIn = false;
-      state.userInfo = {}
+      state.userInfo = {};
     },
     setShowInvalid(state, action) {
       state.showInvalid = action.payload;
+    },
+    resetUserInfo(state, action) {
+      state.userInfo = action.payload;
     },
   },
 });
