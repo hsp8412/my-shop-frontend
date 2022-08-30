@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "../css/profile.css";
 import { getUserInfo } from "../service/userService";
-import dayjs from "dayjs";
-import EditProfile from "../components/modal/editProfile";
 import ProfileCard from "../components/profile/profileCard";
+import EditUserInfoForm from "../components/forms/editUserInfoForm";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -37,11 +36,10 @@ const Profile = () => {
   return (
     <div>
       <ProfileCard user={user} setShowEditProfile={setShowEditProfile} />
-      <EditProfile
+      <EditUserInfoForm
         show={showEditProfile}
         handleClose={handleEditProfileClose}
-        user={user}
-      ></EditProfile>
+      ></EditUserInfoForm>
     </div>
   );
 };

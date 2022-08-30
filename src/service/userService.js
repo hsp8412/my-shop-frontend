@@ -10,3 +10,12 @@ export async function getUserInfo() {
   console.log(res.data);
   return res.data;
 }
+
+export async function updateUserInfo(user) {
+  try {
+    console.log(user);
+    await http.put(`${userApiEndpoint}/`, user);
+  } catch (e) {
+    throw new Error(e.message);
+  }
+}
