@@ -31,8 +31,8 @@ const ProfileCard = ({ user, setShowEditProfile }) => {
                   Change Password
                 </a>
               </div>
-              <div className="divide-line"></div>
-              <div className="col-12 col-md-6 mt-3 mt-md-0">
+              <div className="divide-line mt-4 mb-2"></div>
+              <div className="col-12 col-md-6 mt-2 mt-md-0">
                 {user.aptOrSuite ? <p>Apt/Suite: {user.aptOrSuite}</p> : null}
                 <p>Street Address: {user.streetAddress}</p>
                 <p>City: {user.city}</p>
