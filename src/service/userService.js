@@ -7,7 +7,6 @@ const userApiEndpoint = apiUrl + "/user";
 
 export async function getUserInfo() {
   const res = await http.get(`${userApiEndpoint}/me`);
-  console.log(res.data);
   return res.data;
 }
 
@@ -22,6 +21,14 @@ export async function updateUserInfo(user) {
 export async function resetPassword(data) {
   try {
     await http.patch(`${userApiEndpoint}/password`, data);
+  } catch (e) {
+    throw new Error(e.response.data);
+  }
+}
+
+export async function updateAddress(address) {
+  try {
+    await http.patch(`${userApiEndpoint}/address`, address);
   } catch (e) {
     throw new Error(e.response.data);
   }

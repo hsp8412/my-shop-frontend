@@ -4,6 +4,7 @@ import { getUserInfo } from "../service/userService";
 import ProfileCard from "../components/profile/profileCard";
 import EditUserInfoForm from "../components/forms/editUserInfoForm";
 import ChangePasswordForm from "../components/forms/changePasswordForm";
+import EditAddressForm from "../components/forms/editAddressForm";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -22,6 +23,7 @@ const Profile = () => {
 
   const [showEditProfile, setShowEditProfile] = useState(false);
   const [showChangePassword, setShowChangePassword] = useState(false);
+  const [showChangeAddress, setShowChangeAddress] = useState(false);
 
   const handleEditProfileClose = () => {
     setShowEditProfile(false);
@@ -29,6 +31,10 @@ const Profile = () => {
 
   const handleChangePasswordClose = () => {
     setShowChangePassword(false);
+  };
+
+  const handleChangeAddressClose = () => {
+    setShowChangeAddress(false);
   };
 
   useEffect(() => {
@@ -45,6 +51,7 @@ const Profile = () => {
         user={user}
         setShowEditProfile={setShowEditProfile}
         setShowChangePassword={setShowChangePassword}
+        setShowChangeAddress={setShowChangeAddress}
       />
       <EditUserInfoForm
         show={showEditProfile}
@@ -53,6 +60,10 @@ const Profile = () => {
       <ChangePasswordForm
         show={showChangePassword}
         handleClose={handleChangePasswordClose}
+      />
+      <EditAddressForm
+        show={showChangeAddress}
+        handleClose={handleChangeAddressClose}
       />
     </div>
   );

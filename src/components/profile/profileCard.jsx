@@ -1,7 +1,12 @@
 import React from "react";
 import dayjs from "dayjs";
 
-const ProfileCard = ({ user, setShowEditProfile, setShowChangePassword }) => {
+const ProfileCard = ({
+  user,
+  setShowEditProfile,
+  setShowChangePassword,
+  setShowChangeAddress,
+}) => {
   return (
     <div className="container mt-4">
       <div className="card mb-4">
@@ -43,9 +48,14 @@ const ProfileCard = ({ user, setShowEditProfile, setShowChangePassword }) => {
                 <p>City: {user.city}</p>
                 <p>Province: {user.province}</p>
                 <p>Postal Code: {user.postalCode}</p>
-                <a href="#" className="btn btn-primary">
-                  Edit Address
-                </a>
+                <div
+                  className="btn btn-primary mx-2"
+                  onClick={() => {
+                    setShowChangeAddress(true);
+                  }}
+                >
+                  Change Address
+                </div>
               </div>
             </div>
           </div>

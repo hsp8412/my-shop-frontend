@@ -63,8 +63,6 @@ const Nav = () => {
   const dispatch = useDispatch();
   const location = useLocation();
 
-  console.log(userInfo.firstName);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (searchContents !== "") {
