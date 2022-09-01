@@ -18,7 +18,10 @@ const ChangePasswordForm = ({ show, handleClose }) => {
       .max(100, "Current Password is too long"),
     password: Yup.string()
       .required("New Password is required")
-      .min(8, "The password should be at least 8 characters")
+      .matches(
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/,
+        "The new password should be at least 8 characters, and contains at least 1 letter, 1 number and 1 special character"
+      )
       .max(100, "Password is too long"),
     confirmPassword: Yup.string()
       .required("Please reenter the new password")

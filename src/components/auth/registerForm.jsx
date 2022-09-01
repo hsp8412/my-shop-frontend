@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { register } from "../../service/authService";
-import {toast} from "react-toastify";
+import { toast } from "react-toastify";
 
 const RegisterForm = () => {
   const provinceList = [
@@ -23,100 +23,104 @@ const RegisterForm = () => {
     "YT",
   ];
   const navigate = useNavigate();
-  const formik = useFormik({
-    initialValues: {
-      email: "",
-      firstName: "",
-      lastName: "",
-      password: "",
-      confirmPassword: "",
-      aptOrSuite: "",
-      streetAddress: "",
-      city: "",
-      province: "Select Province",
-      postalCode: "",
-      phone: "",
-    },
-    onSubmit: async (values) => {
-      const {
-        email,
-        firstName,
-        lastName,
-        password,
-        aptOrSuite,
-        streetAddress,
-        city,
-        province,
-        postalCode,
-        phone,
-      } = values;
-      const user = {
-        email,
-        firstName,
-        lastName,
-        password,
-        aptOrSuite,
-        streetAddress,
-        city,
-        province,
-        postalCode,
-        phone,
-      };
-      if (user.aptOrSuite === "") {
-        delete user.aptOrSuite;
-      }
-      if (user.phone === "") {
-        delete user.phone;
-      }
-      try {
-        console.log(user);
-        await register(user);
-        toast.success("Your account has been created.");
-      } catch (error) {
-        console.log(error);
-        toast.error("Error occurs.");
-      }
-      navigate("/login");
-    },
-    validationSchema: Yup.object({
-      firstName: Yup.string()
-        .max(50, "The first name is too long")
-        .required("Firstname is required"),
-      lastName: Yup.string()
-        .max(50, "The last name is too long")
-        .required("Lastname is required"),
-      phone: Yup.string()
-        .max(10, "Ten characters required")
-        .min(10, "Ten characters required"),
-      email: Yup.string()
-        .email("Please enter a valid email address.")
-        .max(100, "Email is too long")
-        .required("Email is required."),
-      password: Yup.string()
-        .required("Password is required.")
-        .min(8, "The password should be at least 8 characters.")
-        .max(100, "Password is too long"),
-      confirmPassword: Yup.string()
-        .required("Password not match.")
-        .oneOf([Yup.ref("password")], "Passwords do not match"),
-      aptOrSuite: Yup.string().max(50, "The apt/suite is too long"),
-      streetAddress: Yup.string()
-        .required("Street address is required")
-        .max(100, "Street address is too long"),
-      city: Yup.string()
-        .required("City is required")
-        .max(50, "City is too long"),
-      province: Yup.string().oneOf(provinceList, "Please select a valid state"),
-      postalCode: Yup.string()
-        .min(6, "Please enter a valid postal code")
-        .max(6, "Please enter a valid postal code"),
-    }),
-    validateOnChange: false,
-  });
+  const { handleChange, handleBlur, errors, values, touched, handleSubmit } =
+    useFormik({
+      initialValues: {
+        email: "",
+        firstName: "",
+        lastName: "",
+        password: "",
+        confirmPassword: "",
+        aptOrSuite: "",
+        streetAddress: "",
+        city: "",
+        province: "Select Province",
+        postalCode: "",
+        phone: "",
+      },
+      onSubmit: async (values) => {
+        const {
+          email,
+          firstName,
+          lastName,
+          password,
+          aptOrSuite,
+          streetAddress,
+          city,
+          province,
+          postalCode,
+          phone,
+        } = values;
+        const user = {
+          email,
+          firstName,
+          lastName,
+          password,
+          aptOrSuite,
+          streetAddress,
+          city,
+          province,
+          postalCode,
+          phone,
+        };
+        if (user.aptOrSuite === "") {
+          delete user.aptOrSuite;
+        }
+        if (user.phone === "") {
+          delete user.phone;
+        }
+        try {
+          console.log(user);
+          await register(user);
+          toast.success("Your account has been created.");
+        } catch (error) {
+          console.log(error);
+          toast.error("Error occurs.");
+        }
+        navigate("/login");
+      },
+      validationSchema: Yup.object({
+        firstName: Yup.string()
+          .max(50, "First name has to be between 1-50 characters")
+          .required("First name is required"),
+        lastName: Yup.string()
+          .max(50, "Last name has to be between 1-50 characters")
+          .required("Last name is required"),
+        phone: Yup.string().matches(
+          /^\d{10}$/,
+          "Please enter a valid phone number"
+        ),
+        email: Yup.string()
+          .email("Please enter a valid email address.")
+          .max(100, "Email is too long")
+          .required("Email is required."),
+        password: Yup.string()
+          .required("Password is required.")
+          .min(8, "The password should be at least 8 characters.")
+          .max(100, "Password is too long"),
+        confirmPassword: Yup.string()
+          .required("Password not match.")
+          .oneOf([Yup.ref("password")], "Passwords do not match"),
+        aptOrSuite: Yup.string().max(50, "The apt/suite is too long"),
+        streetAddress: Yup.string()
+          .required("Street address is required")
+          .max(100, "Street address is too long"),
+        city: Yup.string()
+          .required("City is required")
+          .max(50, "City is too long"),
+        province: Yup.string().oneOf(provinceList, "Please select a province"),
+        postalCode: Yup.string()
+          .matches(
+            /^[ABCEGHJ-NPRSTVXY]\d[ABCEGHJ-NPRSTV-Z][ -]?\d[ABCEGHJ-NPRSTV-Z]\d$/i,
+            "Please enter a valid postal code"
+          )
+          .required("Postal code is required"),
+      }),
+    });
 
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Row>
           <Col>
             <Form.Group className="mb-3" controlId="firstName">
@@ -125,11 +129,15 @@ const RegisterForm = () => {
                 type="text"
                 placeholder="Enter first name"
                 name="firstName"
-                value={formik.values.firstName}
-                onChange={formik.handleChange}
+                value={values.firstName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={touched.firstName && errors.firstName}
               />
               <p className="text-danger">
-                {formik.errors.firstName ? formik.errors.firstName : null}
+                {touched.firstName && errors.firstName
+                  ? errors.firstName
+                  : null}
               </p>
             </Form.Group>
           </Col>
@@ -140,11 +148,13 @@ const RegisterForm = () => {
                 type="text"
                 placeholder="Enter last name"
                 name="lastName"
-                value={formik.values.lastName}
-                onChange={formik.handleChange}
+                value={values.lastName}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={touched.lastName && errors.lastName}
               />
               <p className="text-danger">
-                {formik.errors.lastName ? formik.errors.lastName : null}
+                {touched.lastName && errors.lastName ? errors.lastName : null}
               </p>
             </Form.Group>
           </Col>
@@ -155,11 +165,13 @@ const RegisterForm = () => {
             type="email"
             placeholder="Enter email"
             name="email"
-            value={formik.values.email}
-            onChange={formik.handleChange}
+            value={values.email}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            isInvalid={touched.email && errors.email}
           />
           <p className="text-danger">
-            {formik.errors.email ? formik.errors.email : null}
+            {touched.email && errors.email ? errors.email : null}
           </p>
         </Form.Group>
         <Form.Group className="mb-3" controlId="password">
@@ -168,11 +180,13 @@ const RegisterForm = () => {
             type="password"
             placeholder="Enter password"
             name="password"
-            value={formik.values.password}
-            onChange={formik.handleChange}
+            value={values.password}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            isInvalid={touched.password && errors.password}
           />
           <p className="text-danger">
-            {formik.errors.password ? formik.errors.password : null}
+            {touched.password && errors.password ? errors.password : null}
           </p>
         </Form.Group>
         <Form.Group className="mb-3" controlId="confirmPassword">
@@ -181,12 +195,14 @@ const RegisterForm = () => {
             type="password"
             placeholder="Confirm password"
             name="confirmPassword"
-            value={formik.values.confirmPassword}
-            onChange={formik.handleChange}
+            value={values.confirmPassword}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            isInvalid={touched.confirmPassword && errors.confirmPassword}
           />
           <p className="text-danger">
-            {formik.errors.confirmPassword
-              ? formik.errors.confirmPassword
+            {touched.confirmPassword && errors.confirmPassword
+              ? errors.confirmPassword
               : null}
           </p>
         </Form.Group>
@@ -196,11 +212,13 @@ const RegisterForm = () => {
             type="text"
             placeholder="Enter apt or Suite"
             name="aptOrSuite"
-            value={formik.values.aptOrSuite}
-            onChange={formik.handleChange}
+            value={values.aptOrSuite}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            isInvalid={touched.aptOrSuite && errors.aptOrSuite}
           />
           <p className="text-danger">
-            {formik.errors.aptOrSuite ? formik.errors.aptOrSuite : null}
+            {touched.aptOrSuite && errors.aptOrSuite ? errors.aptOrSuite : null}
           </p>
         </Form.Group>
         <Form.Group className="mb-3" controlId="streetAddress">
@@ -209,11 +227,15 @@ const RegisterForm = () => {
             type="text"
             placeholder="Enter street address"
             name="streetAddress"
-            value={formik.values.streetAddress}
-            onChange={formik.handleChange}
+            value={values.streetAddress}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            isInvalid={touched.streetAddress && errors.streetAddress}
           />
           <p className="text-danger">
-            {formik.errors.streetAddress ? formik.errors.streetAddress : null}
+            {touched.streetAddress && errors.streetAddress
+              ? errors.streetAddress
+              : null}
           </p>
         </Form.Group>
         <Row>
@@ -224,11 +246,13 @@ const RegisterForm = () => {
                 type="text"
                 placeholder="Enter city"
                 name="city"
-                value={formik.values.city}
-                onChange={formik.handleChange}
+                value={values.city}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={touched.city && errors.city}
               />
               <p className="text-danger">
-                {formik.errors.city ? formik.errors.city : null}
+                {touched.city && errors.city ? errors.city : null}
               </p>
             </Form.Group>
           </Col>
@@ -237,8 +261,10 @@ const RegisterForm = () => {
               <Form.Label>Province</Form.Label>
               <Form.Select
                 name="province"
-                value={formik.values.province}
-                onChange={formik.handleChange}
+                value={values.province}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={touched.province && errors.province}
               >
                 <option>Select province</option>
                 {provinceList.map((province) => (
@@ -246,7 +272,7 @@ const RegisterForm = () => {
                 ))}
               </Form.Select>
               <p className="text-danger">
-                {formik.errors.province ? formik.errors.province : null}
+                {touched.province && errors.province ? errors.province : null}
               </p>
             </Form.Group>
           </Col>
@@ -257,11 +283,15 @@ const RegisterForm = () => {
                 type="text"
                 placeholder="Enter postal code"
                 name="postalCode"
-                value={formik.values.postalCode}
-                onChange={formik.handleChange}
+                value={values.postalCode}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                isInvalid={touched.postalCode && errors.postalCode}
               />
               <p className="text-danger">
-                {formik.errors.postalCode ? formik.errors.postalCode : null}
+                {touched.postalCode && errors.postalCode
+                  ? errors.postalCode
+                  : null}
               </p>
             </Form.Group>
           </Col>
@@ -272,17 +302,19 @@ const RegisterForm = () => {
             type="text"
             placeholder="Enter phone number"
             name="phone"
-            value={formik.values.phone}
-            onChange={formik.handleChange}
+            value={values.phone}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            isInvalid={touched.phone && errors.phone}
           />
           <p className="text-danger">
-            {formik.errors.phone ? formik.errors.phone : null}
+            {touched.phone && errors.phone ? errors.phone : null}
           </p>
         </Form.Group>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </Form>
-      <Button variant="primary" type="submit" onClick={formik.handleSubmit}>
-        Submit
-      </Button>
     </Container>
   );
 };

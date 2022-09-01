@@ -117,7 +117,7 @@ const EditAddressForm = ({ show, handleClose }) => {
       });
     };
     fetchUser();
-  }, []);
+  }, [show]);
 
   return (
     <div>
@@ -136,6 +136,7 @@ const EditAddressForm = ({ show, handleClose }) => {
                   value={values.aptOrSuite}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  isInvalid={touched.aptOrSuite && errors.aptOrSuite}
                 />
                 {touched.aptOrSuite && errors.aptOrSuite ? (
                   <Form.Text className="text-danger">
@@ -153,6 +154,7 @@ const EditAddressForm = ({ show, handleClose }) => {
                   value={values.streetAddress}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  isInvalid={touched.streetAddress && errors.streetAddress}
                 />
                 {touched.streetAddress && errors.streetAddress ? (
                   <Form.Text className="text-danger">
@@ -171,6 +173,7 @@ const EditAddressForm = ({ show, handleClose }) => {
                     value={values.city}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    isInvalid={touched.city && errors.city}
                   />
                   {touched.city && errors.city ? (
                     <Form.Text className="text-danger">{errors.city}</Form.Text>
@@ -185,6 +188,7 @@ const EditAddressForm = ({ show, handleClose }) => {
                     value={values.province}
                     onChange={handleChange}
                     onBlur={handleBlur}
+                    isInvalid={touched.province && errors.province}
                   >
                     <option>Select province</option>
                     {provinceList.map((province) => (
@@ -208,6 +212,7 @@ const EditAddressForm = ({ show, handleClose }) => {
                   value={values.postalCode}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  isInvalid={touched.postalCode && errors.postalCode}
                 />
                 {touched.postalCode && errors.postalCode ? (
                   <Form.Text className="text-danger">

@@ -14,16 +14,15 @@ const EditUserInfoForm = ({ handleClose, show }) => {
 
   const schema = Yup.object({
     firstName: Yup.string()
-      .min(1, "First name has to be between 1-50 characters")
       .max(50, "First name has to be between 1-50 characters")
       .required("First name is required"),
     lastName: Yup.string()
-      .min(1, "Last name has to be between 1-50 characters")
       .max(50, "Last name has to be between 1-50 characters")
       .required("Last name is required"),
-    phone: Yup.string()
-      .max(10, "Exactly ten characters required")
-      .min(10, "Exactly ten characters required"),
+    phone: Yup.string().matches(
+      /^\d{10}$/,
+      "Please enter a valid phone number"
+    ),
   });
 
   const {
@@ -86,7 +85,7 @@ const EditUserInfoForm = ({ handleClose, show }) => {
       });
     };
     fetchUser();
-  }, []);
+  }, [show]);
 
   return (
     <div>
