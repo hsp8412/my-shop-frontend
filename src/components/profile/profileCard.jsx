@@ -1,7 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 
-const ProfileCard = ({ user, setShowEditProfile }) => {
+const ProfileCard = ({ user, setShowEditProfile, setShowChangePassword }) => {
   return (
     <div className="container mt-4">
       <div className="card mb-4">
@@ -27,9 +27,14 @@ const ProfileCard = ({ user, setShowEditProfile }) => {
                 >
                   Edit
                 </div>
-                <a href="#" className="btn btn-primary mx-2">
-                  Change Password
-                </a>
+                <div
+                  className="btn btn-primary mx-2"
+                  onClick={() => {
+                    setShowChangePassword(true);
+                  }}
+                >
+                  Reset Password
+                </div>
               </div>
               <div className="divide-line mt-4 mb-2"></div>
               <div className="col-12 col-md-6 mt-2 mt-md-0">

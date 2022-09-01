@@ -3,6 +3,7 @@ import "../css/profile.css";
 import { getUserInfo } from "../service/userService";
 import ProfileCard from "../components/profile/profileCard";
 import EditUserInfoForm from "../components/forms/editUserInfoForm";
+import ChangePasswordForm from "../components/forms/changePasswordForm";
 
 const Profile = () => {
   const [user, setUser] = useState({
@@ -20,9 +21,14 @@ const Profile = () => {
   });
 
   const [showEditProfile, setShowEditProfile] = useState(false);
+  const [showChangePassword, setShowChangePassword] = useState(false);
 
   const handleEditProfileClose = () => {
     setShowEditProfile(false);
+  };
+
+  const handleChangePasswordClose = () => {
+    setShowChangePassword(false);
   };
 
   useEffect(() => {
@@ -35,11 +41,19 @@ const Profile = () => {
 
   return (
     <div>
-      <ProfileCard user={user} setShowEditProfile={setShowEditProfile} />
+      <ProfileCard
+        user={user}
+        setShowEditProfile={setShowEditProfile}
+        setShowChangePassword={setShowChangePassword}
+      />
       <EditUserInfoForm
         show={showEditProfile}
         handleClose={handleEditProfileClose}
-      ></EditUserInfoForm>
+      />
+      <ChangePasswordForm
+        show={showChangePassword}
+        handleClose={handleChangePasswordClose}
+      />
     </div>
   );
 };

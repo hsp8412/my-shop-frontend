@@ -13,9 +13,16 @@ export async function getUserInfo() {
 
 export async function updateUserInfo(user) {
   try {
-    console.log(user);
     await http.put(`${userApiEndpoint}/`, user);
   } catch (e) {
     throw new Error(e.message);
+  }
+}
+
+export async function resetPassword(data) {
+  try {
+    await http.patch(`${userApiEndpoint}/password`, data);
+  } catch (e) {
+    throw new Error(e.response.data);
   }
 }
