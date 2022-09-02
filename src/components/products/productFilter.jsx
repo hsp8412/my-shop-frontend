@@ -31,7 +31,10 @@ const ProductFilter = ({ setActiveFilter, activeFilter, setActivePage }) => {
             <div
               className="filter-clear mt-3 d-inline-block"
               onClick={() => {
-                setActiveFilter(null);
+                setActiveFilter({
+                  uuid: "",
+                  name: "",
+                });
                 setActivePage(1);
               }}
             >
