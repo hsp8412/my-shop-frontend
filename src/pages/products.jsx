@@ -20,16 +20,14 @@ const Products = () => {
   const products = useSelector((state) => state.products.itemList);
   const productsPerRow = useSelector((state) => state.products.itemsPerRow);
   const pageSize = 6;
-  console.log(products);
   let filtered;
-  if (activeFilter) {
+  if (activeFilter.uuid !== "") {
     filtered = products.filter((product) => {
       return product.categoryId === activeFilter.id;
     });
   } else {
     filtered = products;
   }
-  console.log(filtered);
   const pagination = paginate(filtered, activePage, pageSize);
   const numOfPages = Math.floor(pagination.length / pageSize) + 1;
   const display = _.chunk(pagination, productsPerRow);

@@ -53,7 +53,6 @@ const products = [
 export async function getProducts() {
   // return products;
   const res = await http.get(productApiEndpoint);
-  console.log(res.data);
   return res.data;
 }
 

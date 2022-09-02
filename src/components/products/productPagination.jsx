@@ -4,7 +4,6 @@ import { Pagination } from "react-bootstrap";
 
 const ProductPagination = ({ numOfPages, active, setActive }) => {
   const pages = _.range(1, numOfPages + 1);
-  console.log(pages);
   return pages.length > 1 ? (
     <Pagination className="mt-3 mt-md-0">
       {pages.map((page) => (

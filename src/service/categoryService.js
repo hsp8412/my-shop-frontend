@@ -5,6 +5,5 @@ const categoryApiEndpoint = apiUrl + "/category";
 export async function getCategories() {
   const res = await http.get(categoryApiEndpoint);
   const categories = res.data;
-  console.log(res.data);
   return categories;
 }
