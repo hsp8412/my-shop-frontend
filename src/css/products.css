@@ -2,3 +2,41 @@
   max-width: 100% !important;
   height: auto !important;
 }
+
+
+.filter-button{
+  border: solid 4px royalblue;
+  border-radius: 500px;
+  padding: 10px 7px;
+  font-size: 20px;
+  color: royalblue;
+  font-weight: bold;
+  transition:all 0.3s;
+  cursor:pointer;
+}
+
+.filter-button:hover{
+  color:white;
+  background-color: royalblue;
+}
+
+.filter-clear{
+  color: black;
+  cursor:pointer;
+  font-size:18px;
+}
+
+.filter-clear:hover{
+  color: royalblue;
+  text-decoration: underline;
+}
+
+.active-filter{
+  border: solid 4px royalblue;
+  border-radius: 500px;
+  padding: 10px 7px;
+  font-size: 20px;
+  font-weight: bold;
+  color:white;
+  background-color: royalblue;
+}

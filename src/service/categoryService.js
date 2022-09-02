@@ -1,19 +1,10 @@
-const categories = [
-    {
-        id:1,
-        name: "Electronics",
-    },
-    {
-        id:2,
-        name: "Books",
-    },
-    {
-        id:3,
-        name: "Clothes"
-    }
-]
+import http from "./httpService";
+const apiUrl = process.env.REACT_APP_URL_BASE;
+const categoryApiEndpoint = apiUrl + "/category";
 
-
-export function getCategories(){
-    return categories
+export async function getCategories() {
+  const res = await http.get(categoryApiEndpoint);
+  const categories = res.data;
+  console.log(res.data);
+  return categories;
 }
