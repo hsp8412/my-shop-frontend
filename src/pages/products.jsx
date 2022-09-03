@@ -29,7 +29,7 @@ const Products = () => {
     filtered = products;
   }
   const pagination = paginate(filtered, activePage, pageSize);
-  const numOfPages = Math.floor(pagination.length / pageSize) + 1;
+  const numOfPages = Math.floor(filtered.length / pageSize) + 1;
   const display = _.chunk(pagination, productsPerRow);
 
   useEffect(() => {
