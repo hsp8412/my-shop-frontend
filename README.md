@@ -8,11 +8,15 @@ This is the client-side frontend of my e-commerce site.
 -Adding products to the shopping cart\
 -Modify the quantity of items in the shopping cart\
 -Submit orders\
--Display orders of a customer
+-Payment page created with Stripe.js\
+-Display orders of a customer\
+-Customer update personal information/address/password
 
-## Tech stack:
+
+## Technologies used:
 -JavaScript\
 -React\
 -Redux, React Redux, Redux Toolkit\
--Bootstrap, React-Bootstrap
+-Bootstrap, React-Bootstrap\
+-Stripe.js
 
