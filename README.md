@@ -1,5 +1,8 @@
 This is the client-side frontend of my e-commerce site.
 
+This site is deployed: https://lionfish-app-2hsik.ondigitalocean.app/
+In the payment page, you can use the testing card number: 4242 4242 4242 4242.
+
 ## Features:
 -Display the list of products\
 -Display the details of an individual product\
