@@ -4,8 +4,12 @@ const cartSlice = createSlice({
   name: "cart",
   initialState: {
     itemList: [],
+    loading: "idle",
   },
   reducers: {
+    cartLoading(state, action) {
+      state.loading = "pending";
+    },
     addNewItem(state, action) {
       state.itemList.push(action.payload);
     },
@@ -31,6 +35,7 @@ const cartSlice = createSlice({
     },
     setCart(state, action) {
       state.itemList = action.payload;
+      state.loading = "idle";
     },
   },
 });
