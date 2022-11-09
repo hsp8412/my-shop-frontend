@@ -27,7 +27,7 @@ export const fetchProduct = (id) => {
       const product = await fetchHandler();
       dispatch(productsActions.setProductToDisplay(product));
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   };
 };

@@ -2,6 +2,7 @@ import React from "react";
 import { getCategories } from "../../service/categoryService";
 import { useDispatch, useSelector } from "react-redux";
 import "../../css/products.css";
+import MySpinner from "../myspinner";
 
 const ProductFilter = ({ setActiveFilter, activeFilter, setActivePage }) => {
   const categories = useSelector((state) => state.categories.categoryList);

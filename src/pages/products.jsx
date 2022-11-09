@@ -9,6 +9,8 @@ import { paginate } from "../utils/pagination";
 import ProductPagination from "../components/products/productPagination";
 import ProductFilter from "../components/products/productFilter";
 import { fetchCategories } from "../store/categories-actions";
+import categoriesSlice, { categoriesActions } from "../store/categories-slice";
+import MySpinner from "../components/myspinner";
 
 const Products = () => {
   const [activePage, setActivePage] = useState(1);
@@ -18,7 +20,9 @@ const Products = () => {
   });
   const dispatch = useDispatch();
   const products = useSelector((state) => state.products.itemList);
+  const productsLoading = useSelector((state) => state.products.loading);
   const productsPerRow = useSelector((state) => state.products.itemsPerRow);
+  const categoriesLoading = useSelector((state) => state.categories.loading);
   const pageSize = 6;
   let filtered;
   if (activeFilter.uuid !== "") {
@@ -32,7 +36,11 @@ const Products = () => {
   const numOfPages = Math.floor(filtered.length / pageSize) + 1;
   const display = _.chunk(pagination, productsPerRow);
 
+  const [loadingProducts, setLoadingProducts] = useState({});
+
   useEffect(() => {
+    dispatch(productsActions.productsLoading());
+    dispatch(categoriesActions.categoriesLoading());
     dispatch(fetchProducts());
     dispatch(fetchCategories());
   }, [dispatch]);
@@ -41,7 +49,11 @@ const Products = () => {
     dispatch(productsActions.setItemsPerRow(3));
   });
 
-  return (
+  return productsLoading === "pending" || categoriesLoading === "pending" ? (
+    <div className="mt-5 d-flex flex-column align-items-center">
+      <MySpinner />
+    </div>
+  ) : (
     <div className="d-flex flex-column align-items-center">
       <ProductFilter
         setActiveFilter={setActiveFilter}

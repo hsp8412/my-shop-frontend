@@ -14,15 +14,20 @@ const productsSlice = createSlice({
         price: 0,
         stock: 0,
         updatedAt: Date.now(),
-        uuid: ""
-      }
+        uuid: "",
+      },
     ],
     itemsPerRow: 3,
     productToDisplay: null,
+    loading: "idle",
   },
   reducers: {
+    productsLoading(state, action) {
+      state.loading = "pending";
+    },
     setProducts(state, action) {
       state.itemList = action.payload;
+      state.loading = "idle";
     },
     setItemsPerRow(state, action) {
       state.itemsPerRow = action.payload;
