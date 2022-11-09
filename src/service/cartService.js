@@ -4,6 +4,5 @@ const cartApiEndpoint = apiUrl + "/cart";
 
 export async function getCart() {
   const cart = await http.get(cartApiEndpoint);
-  console.log(cart);
   return cart.data;
 }

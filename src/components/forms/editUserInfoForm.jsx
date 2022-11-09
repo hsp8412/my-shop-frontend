@@ -43,7 +43,6 @@ const EditUserInfoForm = ({ handleClose, show }) => {
     onSubmit: async (values, { resetForm }) => {
       try {
         await updateUserInfo({ ...values });
-        console.log(values);
         handleClose();
         const userInfo = await getUserInfo();
         dispatch(authActions.resetUserInfo(userInfo));

@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import dayjs from "dayjs";
 import "../../css/orders.css";
+import { Button } from "react-bootstrap";
+import { payForOrder } from "../../service/orderService";
 
 const OrderCard = ({ order }) => {
-  console.log(order)
   const calculateTotal = () => {
     let total = 0;
     order.products.forEach((item) => {
@@ -26,7 +27,7 @@ const OrderCard = ({ order }) => {
         <div className="container mt-3">
           <h4 className="order-text">Products: </h4>
           {order.products.map((product) => (
-            <p className="order-text">
+            <p className="order-text" key={product.uuid}>
               {product.name} X {product.quantity}
             </p>
           ))}
@@ -34,6 +35,13 @@ const OrderCard = ({ order }) => {
           <h4 className="order-text mt-3">Total: ${calculateTotal()}</h4>
           {renderDate()}
         </div>
+        {order.status === "pending" ? (
+          <div className="d-flex justify-content-start align-content-center mx-3 mb-3">
+            <Button variant="primary" onClick={() => payForOrder(order)}>
+              Make a payment
+            </Button>
+          </div>
+        ) : null}
       </div>
     </div>
   );

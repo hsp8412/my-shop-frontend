@@ -43,12 +43,12 @@ export function getAccessJwt() {
 }
 
 export async function logout(dispatch, itemsInCart) {
-  let items = []
+  let items = [];
   for (let item of itemsInCart) {
-    item = _.pick(item, ['uuid', 'quantity']);
+    item = _.pick(item, ["uuid", "quantity"]);
     items.push(item);
   }
-  await http.post(cartApiEndpoint, {items});
+  await http.post(cartApiEndpoint, { items });
   dispatch(authActions.logout());
   dispatch(cartActions.removeAll());
   localStorage.removeItem(accessTokenKey);

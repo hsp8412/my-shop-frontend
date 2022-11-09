@@ -70,12 +70,11 @@ const RegisterForm = () => {
           delete user.phone;
         }
         try {
-          console.log(user);
           await register(user);
           toast.success("Your account has been created.");
         } catch (error) {
-          console.log(error);
-          toast.error("Error occurs.");
+          if (error.status === 400) toast.error("Email already exists.");
+          else toast.error("Error occurs.");
         }
         navigate("/login");
       },

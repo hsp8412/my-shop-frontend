@@ -14,8 +14,6 @@ const Orders = () => {
     dispatch(fetchOrders());
   }, [dispatch]);
 
-  console.log(orders);
-
   if (orders.length === 0) {
     return <EmptyOrderList />;
   }

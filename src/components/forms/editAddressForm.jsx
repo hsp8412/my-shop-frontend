@@ -69,7 +69,6 @@ const EditAddressForm = ({ show, handleClose }) => {
           delete data.aptOrSuite;
         }
         await updateAddress({ ...data });
-        console.log(data);
         handleClose();
         const userInfo = await getUserInfo();
         dispatch(authActions.resetUserInfo(userInfo));

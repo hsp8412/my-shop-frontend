@@ -17,7 +17,6 @@ export const fetchProducts = () => {
 };
 
 export const fetchProduct = (id) => {
-  console.log(id);
   return async (dispatch) => {
     const fetchHandler = async () => {
       const res = await getProductById(id);
